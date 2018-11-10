@@ -19,3 +19,8 @@ html {
     font-size: 1.6rem;
   }
 }
+
+.container{
+  margin-top: 70px;
+  margin-bottom: 50px;
+}

@@ -20,8 +20,58 @@
 </head>
 
 <body>    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-danger fixed-top">
+        <a class="navbar-brand" href="index.html">The Intelligent Donor <span class="sr-only">(current)</span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">link1</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="tos.html">Terms of Service</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="privacy.html">Privacy Policy</a>
+                </li>
+            </ul>
+            <button class="btn btn-outline-light my-2 my-sm-0">Sign Out</button>
+        </div>
+    </nav>
     <div class="container" id="major" hidden>
-        <h1>Hello, world!</h1>
+        <div class="row">
+            <img class="mx-auto d-block" src="logo-01.png" height="250px">
+            <div class="col-lg-12 d-flex justify-content-center" style="margin-bottom:25px;">
+                <h1 class="display-4" style="text-align:center;">The Intelligent Donor</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card-deck">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Fill your Personal Data</h5>
+                            <p class="card-text">In order to be able to notify you of possible avenues of blood donation, we need your
+                                personal information.</p>
+                            <p class="card-text">In order to opt in, please click on the button below to fill your information:</p>
+                            <a href="#" class="btn btn-outline-danger" role="button">Fill Information</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Request for Blood</h5>
+                            <p class="card-text">Are you organising a blood donation campaign? Do you need blood of some kind?</p>
+                            <p class="card-text">Click on the button below to notify users in the vicinity!</p>
+                            <a href="#" class="btn btn-outline-danger" role="button">Post Alert</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!--FireBase integration-->

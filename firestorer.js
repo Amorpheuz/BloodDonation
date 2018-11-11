@@ -67,13 +67,8 @@ function addInfo() {
         var dstrt = new Date(document.getElementById('inputDiseasesDate').value);
         diseaseStart = dstrt.getTime();
     }
-    alert(conditionDuration);
-    alert(Number(conditionDuration));
-    alert(conditionStart);
     var conditionEnd = Number(conditionDuration) + conditionStart;
     var diseaseEnd = Number(diseaseDuration) + diseaseStart;
-    alert(conditionEnd);
-    alert(diseaseEnd);
     var pData = {
         u_email: email,
         u_phnum: phnum,

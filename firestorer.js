@@ -20,7 +20,7 @@ db.enablePersistence()
 
 function setConditionDate() {
     var hasCondition = document.getElementById('inputConditions');
-    if (hasCondition.options[hasCondition.selectedIndex].value != 'None') {
+    if (hasCondition.options[hasCondition.selectedIndex].value != '0') {
         document.getElementById('conditionsDate').hidden = false;
     } 
     else {
@@ -29,7 +29,7 @@ function setConditionDate() {
 }
 function setDiseaseDate(){
     var hasDisease = document.getElementById('inputDiseases');
-    if (hasDisease.options[hasDisease.selectedIndex].value != 'None') {
+    if (hasDisease.options[hasDisease.selectedIndex].value != '0') {
         document.getElementById('diseaseDate').hidden = false;
     } 
     else{
@@ -42,29 +42,56 @@ function formReset(){
     document.getElementById('conditionsDate').hidden = true;
 }
 function addInfo() {
-    var email = document.getElementById('inputEmail').text;
-    var phnum = document.getElementById('inputPhNumber').text;
-    var addr = document.getElementById('inputAddress').text;
-    var addr2 = document.getElementById('inputAddress2').text;
-    var city = document.getElementById('inputCity').text;
+    var email = document.getElementById('inputEmail').value;
+    var phnum = document.getElementById('inputPhNumber').value;
+    var addr = document.getElementById('inputAddress').value;
+    var addr2 = document.getElementById('inputAddress2').value;
+    var city = document.getElementById('inputCity').value;
     var StateEle = document.getElementById('inputState');
     var state = StateEle.options[StateEle.selectedIndex].text;
-    var zip = document.getElementById('inputZip').text;
-    var bgroup = document.getElementById('inputBloodGroup').text;
+    var zip = document.getElementById('inputZip').value;
+    var bgroup = document.getElementById('inputBloodGroup').value;
     var GenderEle = document.getElementById('inputGender');
     var gender = GenderEle.options[GenderEle.selectedIndex].text;
     var hasCondition = document.getElementById('inputConditions');
-    var conditionDuration = hasCondition.options[hasDisease.selectedIndex].value;
+    var conditionDuration = hasCondition.options[hasCondition.selectedIndex].value;
     var conditionStart = 0;
     if(conditionDuration != '0'){
-        conditionStart = document.getElementById('inputConditionsDate').text.getTime();
+        var cstrt = new Date(document.getElementById('inputConditionsDate').value);
+        conditionStart = cstrt.getTime();
     }
     var hasDisease = document.getElementById('inputDiseases');
     var diseaseDuration = hasDisease.options[hasDisease.selectedIndex].value;
     var diseaseStart = 0;
     if (diseaseDuration != '0') {
-        diseaseStart = document.getElementById('inputDiseasesDate').text.getTime();
+        var dstrt = new Date(document.getElementById('inputDiseasesDate').value);
+        diseaseStart = dstrt.getTime();
     }
+    alert(conditionDuration);
+    alert(Number(conditionDuration));
+    alert(conditionStart);
     var conditionEnd = Number(conditionDuration) + conditionStart;
     var diseaseEnd = Number(diseaseDuration) + diseaseStart;
+    alert(conditionEnd);
+    alert(diseaseEnd);
+    var pData = {
+        u_email: email,
+        u_phnum: phnum,
+        u_addr: addr,
+        u_addr2: addr2,
+        u_city: city,
+        u_state: state,
+        u_zip: zip,
+        u_bgroup: bgroup,
+        u_gender: gender,
+        u_conditionEnd: conditionEnd,
+        u_diseaseEnd: diseaseEnd 
+    };
+    db.collection("pdets").doc(uid).set(pData).then(function () {
+        console.log("Document successfully written!");
+    }).catch(function (error) {
+        console.error("Error writing document: ", error);
+    });
+
+    return false;
 }

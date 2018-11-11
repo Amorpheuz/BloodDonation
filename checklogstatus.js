@@ -1,3 +1,4 @@
+var uid;
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
         document.getElementById('major').hidden = false;
@@ -9,7 +10,7 @@ firebase.auth().onAuthStateChanged(function (user) {
         var emailVerified = user.emailVerified;
         var photoURL = user.photoURL;
         var isAnonymous = user.isAnonymous;
-        var uid = user.uid;
+        uid = user.uid;
         var providerData = user.providerData;
         if(displayName!=null)
         {

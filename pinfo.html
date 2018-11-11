@@ -59,7 +59,7 @@
                         <a href="privacy.html" class="card-link text-danger">Privacy Policy</a>
                         <a href="tos.html" class="card-link text-danger">Terms of Service</a>
                         <p class="card-text">
-                            <form onsubmit="return addInfo()" onreset="formReset()">
+                            <form onreset="formReset()">
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="inputEmail">Email</label>
@@ -190,7 +190,7 @@
                                     <label for="inputDiseasesDate">An approximate date of when you underwent the selected condition</label>
                                     <input type="date" id="inputDiseasesDate" class="form-control">
                                 </div>
-                                <button type="submit" class="btn btn-danger mr-2">Submit</button>
+                                <button type="button" class="btn btn-danger mr-2" onclick="addInfo()">Submit</button>
                                 <button type="reset" class="btn btn-secondary">Reset</button>
                             </form>
                         </p>

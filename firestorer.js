@@ -24,7 +24,7 @@ function setConditionDate() {
         document.getElementById('conditionsDate').hidden = false;
     } 
     else {
-        document.getElementById('diseaseDate').hidden = true;
+        document.getElementById('conditionsDate').hidden = true;
     }
 }
 function setDiseaseDate(){

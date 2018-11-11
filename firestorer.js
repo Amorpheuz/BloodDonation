@@ -1,8 +1,3 @@
-firebase.initializeApp({
-    apiKey: 'AIzaSyDUxHo9ItDrKydYpKNDnRPVcpyFxfyOwmM',
-    authDomain: 'blooddonation-93ff8.firebaseapp.com',
-    projectId: 'blooddonation-93ff8'
-});
 firebase.firestore().enablePersistence()
     .catch(function (err) {
         if (err.code == 'failed-precondition') {

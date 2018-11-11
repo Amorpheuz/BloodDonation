@@ -36,6 +36,11 @@ function setDiseaseDate(){
         document.getElementById('diseaseDate').hidden = true;
     }
 }
+
+function formReset(){
+    document.getElementById('diseaseDate').hidden = true;
+    document.getElementById('conditionsDate').hidden = true;
+}
 function addInfo() {
     
 }

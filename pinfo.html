@@ -145,7 +145,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="inputConditions">Do you fall under any of the mentioned conditions or within period of deferment of them?</label>
-                                    <select id="inputConditions" class="form-control" multiple>
+                                    <select id="inputConditions" class="form-control">
+                                        <option value="None" selected>None</option>
                                         <option value="Abortion">Abortions - 6 months</option>
                                         <option value="BloodTransfusion">History of Blood Transfusion - 6 months</option>
                                         <option value="Surgery">Surgery - 12 months</option>
@@ -160,9 +161,14 @@
                                         <option value="Immunoglobulin">Immunoglobulin - 12 months</option>
                                     </select>
                                 </div>
+                                <div class="form-group" hidden id="conditionsDate">
+                                    <label for="inputConditionsDate">An approximate date of when you underwent the selected condition</label>
+                                    <input type="date" id="inputConditionsDate" class="form-control">
+                                </div>
                                 <div class="form-group">
                                     <label for="inputDiseases">Are you suffering from any of the diseases mentioned below?</label>
-                                    <select id="inputDiseases" class="form-control" multiple>
+                                    <select id="inputDiseases" class="form-control">
+                                        <option value="None" selected>None</option>
                                         <option value="Cancer">Cancer</option>
                                         <option value="Heart">Heart disease</option>
                                         <option value="Bleeding">Abnormal bleeding tendencies</option>
@@ -180,6 +186,10 @@
                                         <option value="Schizophrenia">Schizophrenia</option>
                                         <option value="Endocrine">Endocrine disorders</option>
                                     </select>
+                                </div>
+                                <div class="form-group" hidden id="diseaseDate">
+                                    <label for="inputDiseasesDate">An approximate date of when you underwent the selected condition</label>
+                                    <input type="date" id="inputDiseasesDate" class="form-control">
                                 </div>
                                 <button type="submit" class="btn btn-danger mr-2">Submit</button>
                                 <button type="reset" class="btn btn-secondary">Reset</button>

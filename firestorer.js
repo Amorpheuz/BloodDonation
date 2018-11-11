@@ -90,9 +90,9 @@ function addInfo() {
     };
     db.collection("pdets").doc(uid).set(pData).then(function () {
         console.log("Document successfully written!");
+        alert('Data Added Succesfully!');
     }).catch(function (error) {
         console.error("Error writing document: ", error);
     });
-
     return false;
 }

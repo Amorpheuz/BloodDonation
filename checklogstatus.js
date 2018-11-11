@@ -54,6 +54,7 @@ function pullDets(){
                     var disDate = new Date(pdets.u_diseaseEnd - hasDis.options[hasDis.selectedIndex].value);
                     document.getElementById('inputDiseasesDate').valueAsDate = disDate;
                 }
+                document.getElementById('subBtn').innerText="Update";
             } else {
                 // doc.data() will be undefined in this case
                 console.log("No such document!");

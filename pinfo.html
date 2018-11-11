@@ -59,7 +59,7 @@
                         <a href="privacy.html" class="card-link text-danger">Privacy Policy</a>
                         <a href="tos.html" class="card-link text-danger">Terms of Service</a>
                         <p class="card-text">
-                            <form>
+                            <form onsubmit="return addInfo()">
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="inputEmail">Email</label>
@@ -145,7 +145,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="inputConditions">Do you fall under any of the mentioned conditions or within period of deferment of them?</label>
-                                    <select id="inputConditions" class="form-control">
+                                    <select id="inputConditions" class="form-control" onchange="setConditionDate()">
                                         <option value="None" selected>None</option>
                                         <option value="Abortion">Abortions - 6 months</option>
                                         <option value="BloodTransfusion">History of Blood Transfusion - 6 months</option>
@@ -167,7 +167,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="inputDiseases">Are you suffering from any of the diseases mentioned below?</label>
-                                    <select id="inputDiseases" class="form-control">
+                                    <select id="inputDiseases" class="form-control" onchange="setDiseaseDate()">
                                         <option value="None" selected>None</option>
                                         <option value="Cancer">Cancer</option>
                                         <option value="Heart">Heart disease</option>

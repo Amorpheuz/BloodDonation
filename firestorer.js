@@ -20,7 +20,7 @@ db.enablePersistence()
 
 function setConditionDate() {
     var hasCondition = document.getElementById('inputConditions');
-    if (hasCondition != 'None') {
+    if (hasCondition.options[hasCondition.selectedIndex].value != 'None') {
         document.getElementById('conditionsDate').hidden = false;
     } 
     else {
@@ -29,7 +29,7 @@ function setConditionDate() {
 }
 function setDiseaseDate(){
     var hasDisease = document.getElementById('inputDiseases');
-    if (hasDisease != 'None') {
+    if (hasDisease.options[hasDisease.selectedIndex].value != 'None') {
         document.getElementById('diseaseDate').hidden = false;
     } 
     else{

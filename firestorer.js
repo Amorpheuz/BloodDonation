@@ -1,4 +1,11 @@
-firebase.firestore().enablePersistence()
+// Initialize Cloud Firestore through Firebase
+var db = firebase.firestore();
+
+// Disable deprecated features
+db.settings({
+    timestampsInSnapshots: true
+});
+db.enablePersistence()
     .catch(function (err) {
         if (err.code == 'failed-precondition') {
             // Multiple tabs open, persistence can only be enabled
@@ -10,10 +17,3 @@ firebase.firestore().enablePersistence()
             // ...
         }
     });
-// Initialize Cloud Firestore through Firebase
-var db = firebase.firestore();
-
-// Disable deprecated features
-db.settings({
-    timestampsInSnapshots: true
-});

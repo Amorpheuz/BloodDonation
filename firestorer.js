@@ -48,6 +48,7 @@ function addInfo() {
     var addr2 = document.getElementById('inputAddress2').value;
     var city = document.getElementById('inputCity').value;
     var StateEle = document.getElementById('inputState');
+    var stateIndex = StateEle.selectedIndex;
     var state = StateEle.options[StateEle.selectedIndex].text;
     var zip = document.getElementById('inputZip').value;
     var bgroup = document.getElementById('inputBloodGroup').value;
@@ -69,6 +70,8 @@ function addInfo() {
     }
     var conditionEnd = Number(conditionDuration) + conditionStart;
     var diseaseEnd = Number(diseaseDuration) + diseaseStart;
+    var conditionIndex = hasCondition.selectedIndex;
+    var diseaseIndex = hasDisease.selectedIndex;
     var pData = {
         u_email: email,
         u_phnum: phnum,
@@ -80,7 +83,10 @@ function addInfo() {
         u_bgroup: bgroup,
         u_gender: gender,
         u_conditionEnd: conditionEnd,
-        u_diseaseEnd: diseaseEnd 
+        u_diseaseEnd: diseaseEnd,
+        u_selCondition: conditionIndex,
+        u_selDisease: diseaseIndex,
+        u_stateIndex: stateIndex 
     };
     db.collection("pdets").doc(uid).set(pData).then(function () {
         console.log("Document successfully written!");

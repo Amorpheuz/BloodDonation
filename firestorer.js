@@ -42,5 +42,29 @@ function formReset(){
     document.getElementById('conditionsDate').hidden = true;
 }
 function addInfo() {
-    
+    var email = document.getElementById('inputEmail').text;
+    var phnum = document.getElementById('inputPhNumber').text;
+    var addr = document.getElementById('inputAddress').text;
+    var addr2 = document.getElementById('inputAddress2').text;
+    var city = document.getElementById('inputCity').text;
+    var StateEle = document.getElementById('inputState');
+    var state = StateEle.options[StateEle.selectedIndex].text;
+    var zip = document.getElementById('inputZip').text;
+    var bgroup = document.getElementById('inputBloodGroup').text;
+    var GenderEle = document.getElementById('inputGender');
+    var gender = GenderEle.options[GenderEle.selectedIndex].text;
+    var hasCondition = document.getElementById('inputConditions');
+    var conditionDuration = hasCondition.options[hasDisease.selectedIndex].value;
+    var conditionStart = 0;
+    if(conditionDuration != '0'){
+        conditionStart = document.getElementById('inputConditionsDate').text.getTime();
+    }
+    var hasDisease = document.getElementById('inputDiseases');
+    var diseaseDuration = hasDisease.options[hasDisease.selectedIndex].value;
+    var diseaseStart = 0;
+    if (diseaseDuration != '0') {
+        diseaseStart = document.getElementById('inputDiseasesDate').text.getTime();
+    }
+    var conditionEnd = Number(conditionDuration) + conditionStart;
+    var diseaseEnd = Number(diseaseDuration) + diseaseStart;
 }

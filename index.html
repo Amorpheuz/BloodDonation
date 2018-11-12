@@ -66,7 +66,7 @@
                             <p class="card-text">In order to receive notifications when your help is needed, please grant the app permission to send notifications! 
                                 We garuntee that you will be only notified when needed!
                             </p>
-                            <a href="#" class="btn btn-outline-info" role="button">Turn on Notifications</a>
+                            <a href="#" class="btn btn-outline-info" role="button" onclick="enableNotif()">Turn on Notifications</a>
                         </div>
                     </div>
                 </div>
@@ -138,10 +138,10 @@
     <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-messaging.js"></script>
     
     <!-- Comment out (or don't include) services that you don't want to use -->
-    <!-- <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-messaging.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-functions.js"></script> -->
+    <!--<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase-functions.js"></script> -->
     
     <script>
         // Initialize Firebase
@@ -160,11 +160,35 @@
     <script src="checklogstatus.js"></script>
     <script src="signout.js"></script>
     <script>
+        const messaging = firebase.messaging();
         if ('serviceWorker' in navigator) {
                 window.addEventListener('load', function () {
                     navigator.serviceWorker.register('sw.js').then(function (registration) {
                         // Registration was successful
                         console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                        messaging.usePublicVapidKey('BHPTKEIIdV19XinKjR_699PAkWNstMd8OO8vhtjL4nMmlPzDH8hXTiDhBgHpNopKfTbGh9UHYfgHP5Kw6JcA1CM');
+                        messaging.requestPermission().then(function () {
+                            console.log('Notification permission granted.');
+                            // TODO(developer): Retrieve an Instance ID token for use with FCM.
+                            // ...
+
+                            // Get Instance ID token. Initially this makes a network call, once retrieved
+                            // subsequent calls to getToken will return from cache.
+                            messaging.getToken().then(function (currentToken) {
+                                if (currentToken) {
+                                    console.log(currentToken);
+                                } else {
+                                    // Show permission request.
+                                    console.log('No Instance ID token available. Request permission to generate one.');
+                                    // Show permission UI.
+
+                                }
+                            }).catch(function (err) {
+                                console.log('An error occurred while retrieving token. ', err);
+                            });
+                        }).catch(function (err) {
+                            console.log('Unable to get permission to notify.', err);
+                        });
                     }, function (err) {
                         // registration failed :(
                         console.log('ServiceWorker registration failed: ', err);
@@ -179,32 +203,38 @@
                     // Stash the event so it can be triggered later.
                     deferredPrompt = e;
                     // Update UI notify the user they can add to home screen
-                    btnAdd.style.display = 'block';
                 });
-                btnAdd.addEventListener('click', (e) => {
-                        // hide our user interface that shows our A2HS button
-                        btnAdd.style.display = 'none';
-                        // Show the prompt
-                        deferredPrompt.prompt();
-                        // Wait for the user to respond to the prompt
-                        deferredPrompt.userChoice
-                            .then((choiceResult) => {
-                                if (choiceResult.outcome === 'accepted') {
-                                    console.log('User accepted the A2HS prompt');
-                                } else {
-                                    console.log('User dismissed the A2HS prompt');
-                                }
-                                deferredPrompt = null;
-                            });
-                    });
                     window.addEventListener('appinstalled', (evt) => {
                             app.logEvent('a2hs', 'installed');
                             if (window.matchMedia('(display-mode: standalone)').matches) {
                             console.log('display-mode is standalone');
                         }
                     });
-    </script>
+            
+                
+                    // Callback fired if Instance ID token is updated.
+                        messaging.onTokenRefresh(function () {
+                            messaging.getToken().then(function (refreshedToken) {
+                                console.log('Token refreshed.');
+                                // Indicate that the new Instance ID token has not yet been sent to the
+                                // app server.
 
+                                // Send Instance ID token to app server.
+
+                                // ...
+                            }).catch(function (err) {
+                                console.log('Unable to retrieve refreshed token ', err);
+                            });
+                        });
+                        // Handle incoming messages. Called when:
+                        // - a message is received while the app has focus
+                        // - the user clicks on an app notification created by a service worker
+                        //   `messaging.setBackgroundMessageHandler` handler.
+                        messaging.onMessage(function (payload) {
+                                console.log('Message received. ', payload);
+                                // ...
+                            });
+    </script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

@@ -178,7 +178,10 @@
                             messaging.getToken().then(function (currentToken) {
                                 if (currentToken) {
                                     console.log(currentToken);
-                                    db.collection("notifID").doc(uid).set(currentToken).then(function () {
+                                    var tok = {
+                                        u_nid: currentToken
+                                    }
+                                    db.collection("notifID").doc(uid).set(tok).then(function () {
                                         console.log("Document successfully written!");
                                     }).catch(function (error) {
                                         console.error("Error writing document: ", error);

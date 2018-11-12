@@ -159,6 +159,7 @@
     <!--Custom JS-->
     <script src="checklogstatus.js"></script>
     <script src="signout.js"></script>
+    <script src="firestorer.js"></script>
     <script>
         const messaging = firebase.messaging();
         if ('serviceWorker' in navigator) {
@@ -177,6 +178,11 @@
                             messaging.getToken().then(function (currentToken) {
                                 if (currentToken) {
                                     console.log(currentToken);
+                                    db.collection("notifID").doc(uid).set(currentToken).then(function () {
+                                        console.log("Document successfully written!");
+                                    }).catch(function (error) {
+                                        console.error("Error writing document: ", error);
+                                    });
                                 } else {
                                     // Show permission request.
                                     console.log('No Instance ID token available. Request permission to generate one.');
@@ -218,7 +224,11 @@
                                 console.log('Token refreshed.');
                                 // Indicate that the new Instance ID token has not yet been sent to the
                                 // app server.
-
+                                db.collection("notifID").doc(uid).set(refreshedToken).then(function () {
+                                    console.log("Document successfully written!");
+                                }).catch(function (error) {
+                                    console.error("Error writing document: ", error);
+                                });
                                 // Send Instance ID token to app server.
 
                                 // ...

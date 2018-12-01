@@ -1,9 +1,6 @@
 var CACHE_NAME = 'tid-cache-v1';
 var urlsToCache = [
-    'index.html',
-    'login.html',
-    'checklogstatus.js',
-    'sw.js'
+    
 ];
 self.addEventListener('install', function (event) {
     event.waitUntil(
